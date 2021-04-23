@@ -1,0 +1,23 @@
+{
+  "name": "trefleapi_nodeexpress",
+  "version": "1.0.0",
+  "description": "Trefle API node express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawsoncustonscole/TrefleAPI_nodeExpress.git"
+  },
+  "author": "Dawson Custons-Cole",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dawsoncustonscole/TrefleAPI_nodeExpress/issues"
+  },
+  "homepage": "https://github.com/dawsoncustonscole/TrefleAPI_nodeExpress#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
