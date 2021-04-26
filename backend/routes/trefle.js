@@ -19,13 +19,14 @@ const getToken = async () => {
 //TO DO add axios.create method to open connection using revceived key
 
 const getData = async (token, term) => {
+    const options = {
+        params: {
+            token: token,
+            q: term,
+        },
+    };
     const response = await axios
-        .get('https://trefle.io/api/v1/plants/search', {
-            params: {
-                token: token,
-                q: term,
-            },
-        })
+        .get('https://trefle.io/api/v1/plants/search', options)
         .catch((error) => {
             console.log('error', error.response);
         });
