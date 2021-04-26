@@ -13,6 +13,7 @@ const getToken = async () => {
         params
     );
 
+    console.log('token requested from trefle.js');
     return response.data;
 };
 
