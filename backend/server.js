@@ -1,16 +1,32 @@
 const express = require('express');
-const trefleAPI = require('./routes/trefle');
+const getClientToken = require('./routes/clientToken');
+const getTrefleData = require('./routes/trefleData');
+const searchTrefle = require('./apis/trefleAPI');
 
 const app = express();
+let clientToken;
 
-app.get('/', (req, res) => {
+// Server port and fetch client Trefle JWT token using POST method
+app.get('/', async (req, res) => {
     res.send('Server running on port 5000');
+    const { data } = await getClientToken.getToken();
+    clientToken = data.token;
 });
 
-app.get('/plants', async (req, res) => {
-    const value = await trefleAPI.getToken();
-    const data = await trefleAPI.getData(value, 'Rose');
+// GET all plants from trefle
+// TODO app pagination
+app.get('/plants/', async (req, res) => {
+    const data = await getTrefleData.allTrefleData(clientToken, req.param.q);
     res.send(data);
 });
+
+// Get specific plant using search term in query
+app.get('/plants/search/:q', async (req, res) => {
+    const data = await searchTrefle.searchTrefle(clientToken, req.params.q);
+
+    res.send(data);
+});
+
+//Postgres & Flyway for db
 
 app.listen(5000, console.log('Server running on port 5000'));
